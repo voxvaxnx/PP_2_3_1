@@ -6,10 +6,32 @@
 </head>
 <body>
 
-<div th:each="user : ${users}"> <!--//типа массива for each тут people это список который мы передали в модель в контроллере а создали в DAO-->
-    <a th:href="@{/users/{id}(id=${user.getId()})}" th:text="${user.toString}">user</a> <!--// а тут user это каждый обьект(элемент) из списка people-->
-                                                                                                <!-- @{/people/{id}(id=${user.getId()})} - это шаблон адреса страницы-->
-</div>
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Lastname</th>
+        <th>Action</th>
+        <th>Delete</th>
+    </tr>
+    <tr th:each="user: ${users}">
+        <td th:utext="${user.getId}">Id</td>
+        <td th:utext="${user.getName}">Name</td>
+        <td th:utext="${user.getLastname}">Lastname</td>
+        <td>
+            <a th:href="@{/users/{id}/edit(id=${user.getId()})}">Edit</a>
+        </td>
+        <td>
+            <form action="/users">
+                <button>Delete</button>
+            </form>
+        </td>
+    </tr>
+</table>
+<br>
+<form action="/users/new">
+    <button>New User</button>
+</form>
 
 </body>
 </html>

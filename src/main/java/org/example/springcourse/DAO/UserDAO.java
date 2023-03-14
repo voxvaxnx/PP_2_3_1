@@ -1,38 +1,16 @@
 package org.example.springcourse.DAO;
 
 import org.example.springcourse.models.User;
-import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
-@Component
-public class UserDAO {
-    private static int PEOPLE_COUNT;
-    private List<User> people;
 
+public interface UserDAO {
+    List<User> index();
+    User show (int id);
+    void save(User user);
+    void deleteUser(int id);
+    void Edit();
 
-    { //статический блок добавления Person в список
-        people = new ArrayList<>();
-        people.add(new User(++PEOPLE_COUNT, "Tom", "Tomasson"));
-        people.add(new User(++PEOPLE_COUNT, "Jerry", "Jeferson"));
-        people.add(new User(++PEOPLE_COUNT, "Spike", "Spikerton"));
-        people.add(new User(++PEOPLE_COUNT, "Babka", "V_Tapkah"));
+    void updateUser(int id, User user);
 
-    }
-
-    public List<User> index(){ //отдаем список
-        //...код для получаем из базы данных
-        return people;
-    }
-    public User show (int id) {  //отдаем список по id используем стримы и лямбды
-        //...код для получаем из базы данных по id
-        return people.stream().filter(user -> user.getId() == id).findAny().orElse(null);
-
-    }
-    public void save(User user) { //метод для сохранения объекта Person
-        //...код для сохраняем в базу данных
-       user.setId(++PEOPLE_COUNT);
-       people.add(user);
-
-    }
 }

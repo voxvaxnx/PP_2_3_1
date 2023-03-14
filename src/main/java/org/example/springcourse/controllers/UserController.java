@@ -1,6 +1,7 @@
 package org.example.springcourse.controllers;
 
 import org.example.springcourse.DAO.UserDAO;
+import org.example.springcourse.DAO.UserDAOImplementation;
 import org.example.springcourse.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,5 +37,16 @@ public class UserController {
         userDAO.save(user);                                     // а тут мы сохраняем обьект в базу или список или ?
         return "redirect:/users"; //осуществляем редирект по ключевому слову redirect:
 
+    }
+    @GetMapping("/{id}/edit")
+    public String edit(Model model, @PathVariable("id") int id){
+        model.addAttribute("user" , userDAO.show(id));
+        return "users/edit";
+    }
+
+    @PatchMapping("/{id}")
+    public String update(@ModelAttribute("user") User user, @PathVariable("id") int id){
+        userDAO.updateUser(id, user);
+        return "redirect:/users";
     }
 }
