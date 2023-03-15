@@ -1,8 +1,8 @@
-package org.example.springcourse.controllers;
+package web.controllers;
 
-import org.example.springcourse.DAO.UserDAO;
-import org.example.springcourse.DAO.UserDAOImplementation;
-import org.example.springcourse.models.User;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import web.models.User;
+import web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,20 +11,23 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/users")
 public class UserController {
-    private final UserDAO userDAO;
+    private final UserService userService;
+
+
     @Autowired //можно не писать так как у конструктора автоматом @Autowired
-    public UserController(UserDAO userDAO) {
-        this.userDAO = userDAO;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
+
 
     @GetMapping()  //тут ничего нет потому что есть @RequestMapping("/people")
     public String index(Model model){ //получим всех людей из DAO и передаем на отображение
-        model.addAttribute("users", userDAO.index());
+        model.addAttribute("users", userService.allUser());
         return "users/index";
     }
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id, Model model) { // Метод извлекает 1го человека из DAO по id и передаем на отображение
-        model.addAttribute("user", userDAO.show(id));
+        model.addAttribute("user", userService.getIdUser(id));
         return "users/show";
     }
     @GetMapping("/new")
@@ -33,20 +36,25 @@ public class UserController {
         return "users/new";
     }
     @PostMapping()
-    public String create(@ModelAttribute("user") User user){  // Метод за счет аннотации @ModelAttribute создает в модели объект Person и из тела Post запроса(формы) задает объекту Person поля через сеттеры
-        userDAO.save(user);                                     // а тут мы сохраняем обьект в базу или список или ?
+    public String create(@ModelAttribute("User") User user){  // Метод за счет аннотации @ModelAttribute создает в модели объект Person и из тела Post запроса(формы) задает объекту Person поля через сеттеры
+        userService.addUser(user);                                     // а тут мы сохраняем обьект в базу или список или ?
         return "redirect:/users"; //осуществляем редирект по ключевому слову redirect:
 
     }
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id){
-        model.addAttribute("user" , userDAO.show(id));
+        model.addAttribute("user" , userService.getIdUser(id));
         return "users/edit";
     }
 
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("user") User user, @PathVariable("id") int id){
-        userDAO.updateUser(id, user);
+        userService.updateUser(id, user);
+        return "redirect:/users";
+    }
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable("id") int id){
+        userService.deleteUser(id);
         return "redirect:/users";
     }
 }

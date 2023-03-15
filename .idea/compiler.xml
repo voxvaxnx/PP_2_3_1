@@ -10,8 +10,10 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="spring" target="1.8" />
       <module name="spring-mvc-app-java-config" target="17" />
       <module name="SpringMVCAlish" target="17" />
+      <module name="Web_Application_2_3_1" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

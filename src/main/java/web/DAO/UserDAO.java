@@ -1,6 +1,6 @@
-package org.example.springcourse.DAO;
+package web.DAO;
 
-import org.example.springcourse.models.User;
+import web.models.User;
 
 import java.util.List;
 
@@ -8,9 +8,6 @@ public interface UserDAO {
     List<User> index();
     User show (int id);
     void save(User user);
-    void deleteUser(int id);
-    void Edit();
-
+    void delete(int id);
     void updateUser(int id, User user);
-
 }
