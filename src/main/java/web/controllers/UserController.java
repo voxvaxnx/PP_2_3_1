@@ -1,6 +1,5 @@
 package web.controllers;
 
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 import web.models.User;
 import web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,17 +22,17 @@ public class UserController {
     @GetMapping()  //тут ничего нет потому что есть @RequestMapping("/people")
     public String index(Model model){ //получим всех людей из DAO и передаем на отображение
         model.addAttribute("users", userService.allUser());
-        return "users/index";
+        return "/index";
     }
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id, Model model) { // Метод извлекает 1го человека из DAO по id и передаем на отображение
         model.addAttribute("user", userService.getIdUser(id));
-        return "users/show";
+        return "/show";
     }
     @GetMapping("/new")
     public String newPerson(Model model) { //Метод возвращает форму создания нового пользователя
         model.addAttribute("user", new User());
-        return "users/new";
+        return "/new";
     }
     @PostMapping()
     public String create(@ModelAttribute("User") User user){  // Метод за счет аннотации @ModelAttribute создает в модели объект Person и из тела Post запроса(формы) задает объекту Person поля через сеттеры
@@ -44,7 +43,7 @@ public class UserController {
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id){
         model.addAttribute("user" , userService.getIdUser(id));
-        return "users/edit";
+        return "/edit";
     }
 
     @PatchMapping("/{id}")
