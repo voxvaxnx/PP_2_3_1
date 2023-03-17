@@ -6,7 +6,7 @@ import java.io.Serializable;
 @Table(name = "user")
 public class User implements Serializable {
     @Id
-    @Column(name="id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(name = "name")
@@ -14,21 +14,26 @@ public class User implements Serializable {
     @Column(name = "lastname")
     private String lastname;
 
-    public User(){
+    public User() {
     }
+
     public User(String name, String lastname) {
         this.name = name;
         this.lastname = lastname;
     }
+
     public long getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
+
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -42,7 +47,6 @@ public class User implements Serializable {
     }
 
 
-
     @Override
     public int hashCode() {
         int result = (int) (getId() ^ (getId() >>> 32));
@@ -53,6 +57,6 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return  id + " " + name + " " + lastname;
+        return id + " " + name + " " + lastname;
     }
 }
