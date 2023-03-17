@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(int id) {
+    public void deleteUser(Long id) {
         userDAO.delete(id);
     }
 
@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getIdUser(int id) {
+    public User getIdUser(Long id) {
         return userDAO.show(id);
     }
 }

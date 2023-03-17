@@ -6,14 +6,14 @@
 </head>
 <body>
 <form th:method="PATCH" th:action="@{/users/{id}(id=${user.getId})}" th:object="${user}">
-  <label for="name">Enter Name</label>
-  <input type="text" th:field="*{name}" id="name"/>
+    <label for="name">Enter Name</label>
+    <input type="text" th:field="*{name}" id="name"/>
     <br/>
     <br/>
-  <label for="lastname">Enter Lastname</label>
-  <input type="text" th:field="*{lastname}" id="lastname"/>
-  <br> <!-- пустая строка-->
-  <input type="submit" value="Update!"/>
+    <label for="lastname">Enter Lastname</label>
+    <input type="text" th:field="*{lastname}" id="lastname"/>
+    <br> <!-- пустая строка-->
+    <input type="submit" value="Update!"/>
 
 
 </form>

@@ -8,7 +8,7 @@ public class User implements Serializable {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     @Column(name = "name")
     private String name;
     @Column(name = "lastname")
@@ -26,7 +26,7 @@ public class User implements Serializable {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

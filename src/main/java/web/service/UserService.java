@@ -3,13 +3,13 @@ import web.models.User;
 import java.util.List;
 
 public interface UserService {
-    public List<User> allUser();//показать юзеров
+    public List<User> allUser();
 
-    public void addUser(User user);//добавить юзеров
+    public void addUser(User user);
 
-    public void deleteUser(int id);//удалить юзеров
+    public void deleteUser(Long id);
 
-    public void updateUser(User user);//изменить юзеров
+    public void updateUser(User user);
 
-    public User getIdUser(int id);//получить по id юзеров
+    public User getIdUser(Long id);
 }
