@@ -1,13 +1,13 @@
-package web.Dao;
+package web.dao;
 
 import web.models.User;
 
 import java.util.List;
 
 public interface UserDao {
-    List<User> index();
+    List<User> getAllUsers();
 
-    User show(Long id);
+    User getIdUser(Long id);
 
     void save(User user);
 

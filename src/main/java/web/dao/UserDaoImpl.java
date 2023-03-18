@@ -1,5 +1,4 @@
-package web.Dao;
-import org.springframework.transaction.annotation.Transactional;
+package web.dao;
 import web.models.User;
 import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
@@ -12,31 +11,28 @@ public class UserDaoImpl implements UserDao {
     private EntityManager entityManager;
 
     @Override
-    public List<User> index() {
+    public List<User> getAllUsers() {
         return entityManager.createQuery("FROM User").getResultList();
     }
 
     @Override
-    public User show(Long id) {
+    public User getIdUser(Long id) {
         return entityManager.find(User.class, id);
     }
 
     @Override
-    @Transactional
     public void save(User user) { //метод для сохранения объекта Person
         entityManager.persist(user);
     }
 
     @Override
-    @Transactional
     public void updateUser(User user) {
         entityManager.merge(user);
     }
 
     @Override
-    @Transactional
     public void delete(Long id) {
-        entityManager.remove(show(id));
+    entityManager.remove(getIdUser(id));
 
     }
 }

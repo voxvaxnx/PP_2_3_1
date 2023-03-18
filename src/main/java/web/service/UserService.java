@@ -3,7 +3,7 @@ import web.models.User;
 import java.util.List;
 
 public interface UserService {
-    public List<User> allUser();
+    public List<User> getAllUsers();
 
     public void addUser(User user);
 

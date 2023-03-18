@@ -18,12 +18,12 @@ public class UserController {
 
     @GetMapping
     public String index() { //получим всех людей из DAO и передаем на отображение
-        return "/hello";
+        return "redirect:/users";
     }
 
     @GetMapping("/users")
     public String index(Model model) {
-        model.addAttribute("users", userService.allUser());
+        model.addAttribute("users", userService.getAllUsers());
         return "/index";
     }
 
